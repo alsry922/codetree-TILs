@@ -1,7 +1,7 @@
 const fs = require('fs');
 const input = fs.readFileSync(0).toString().trim().split('\n');
 const numOfSubject = Number.parseInt(input[0]);
-const scores = input[1].split(' ').map((ele) => Number.parseFloat(ele));
+const scores = input[1].split(' ').map(Number.parseFloat);
 const sumOfScores = scores.reduce((acc, curr) => {
     return acc+curr;
 })
