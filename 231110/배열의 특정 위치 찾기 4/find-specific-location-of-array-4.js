@@ -2,18 +2,17 @@ const fs = require('fs');
 const input = fs.readFileSync(0).toString().trim().split(' ');
 const arr = input.map((ele) => Number.parseInt(ele));
 
-let zeroValIdx = 0;
-const numsBeforeZero = arr.filter((ele, index) => {
-    if (ele === 0 || zeroValIdx < index) {
-        return false;
+let cnt = 0;
+let sum = 0;
+
+for (let i = 0; i < 10; i++) {
+    if (arr[i] === 0) {
+        break;
     }
-    zeroValIdx++;
-    return true;
-});
+    if (arr[i] % 2 === 0) {
+        cnt++;
+        sum += arr[i];
+    }
+}
 
-const evenNums = numsBeforeZero.filter((ele, index) => {
-    return ele % 2 === 0;
-});
-
-const sum = evenNums.reduce((acc,curr) => acc+curr);
-console.log(evenNums.length, sum);
+console.log(cnt, sum);
