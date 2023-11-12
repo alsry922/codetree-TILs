@@ -14,7 +14,7 @@ scores.forEach(score => {
         return acc + curr;
     });
     const average = sum / score.length;
-    if (average > 60) {
+    if (average >= 60) {
         passCnt++;
         console.log('pass');
     } else {
