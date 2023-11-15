@@ -10,6 +10,8 @@ for (let i = 1; i < 10; i++) {
 let count = 0;
 let result = [];
 for (let i = 0; i < 10; i++) {
+    if (count === 2) break;
+    
     if (arr[i] % 5 === 0) {
         count++;
     }
