@@ -7,6 +7,6 @@ public class Main {
         char input = br.readLine().charAt(0);
         Character[] characters = new Character[] {'L', 'E', 'B', 'R', 'O', 'S'};
         int index = Arrays.asList(characters).indexOf(input);
-        System.out.println(index);
+        System.out.println(index == -1 ? "None" : index);
     }
 }
