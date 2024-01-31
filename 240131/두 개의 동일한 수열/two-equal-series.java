@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 
 public class Main {
     public static int arrLength;
-    public static boolean answer = "Yes";
+    public static String answer = "Yes";
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         arrLength = Integer.parseInt(br.readLine());
