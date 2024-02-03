@@ -9,10 +9,11 @@ public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         listCount = Integer.parseInt(br.readLine());
-        list = Arrays.stream(br.readLine().split(" ")).map(Integer::parseInt).sorted().collect(Collectors.toCollection(ArrayList::new));
+        list = Arrays.stream(br.readLine().split(" ")).map(Integer::parseInt).collect(Collectors.toCollection(ArrayList::new));
         for (int i = 0; i < list.size(); i++) {
             if (i % 2 == 0) {
-                sb.append(list.get(i / 2)).append(" ");
+                List<Integer> subList = list.subList( 0, i+1 ).stream().sorted().collect(Collectors.toCollection(ArrayList::new));
+                sb.append(subList.get( i/2 )).append(" ");
             }
         }
         System.out.println(sb);
