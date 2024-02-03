@@ -24,15 +24,16 @@ public class Main {
             String[] input = br.readLine().split(" ");
             agents.add(new Agent(input[0], Integer.parseInt(input[1])));
         }
+
         for (int i = 0; i < length; i++) {
-        int max = agents.get(i).point;
-            for (int j = i + 1; j < length; j++) {
-                if (agents.get(j).point < max) {
-                    Agent temp = agents.get(j);
-                    agents.set(j, agents.get(i));
-                    agents.set(i, temp);
+            int max = agents.get(0).point;  
+            for (int j = 0; j < length - 1 - i; j++) {
+                if (agents.get(j+1).point < max) {
+                    Agent temp = agents.get(j+1);
+                    agents.set(j + 1, agents.get(j));
+                    agents.set(j, temp);
                 } else {
-                    break;
+                    max = agents.get(j+1).point;
                 }
             }
         }
