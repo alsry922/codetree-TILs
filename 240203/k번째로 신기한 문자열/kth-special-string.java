@@ -13,7 +13,7 @@ public class Main {
         startString = inputs[2];
         for (int i = 0; i < inputCount; i++) {
             String word = br.readLine();
-            if (word.startsWith("ap")) {
+            if (word.startsWith(startString)) {
                 words.add(word);
             }
         }
