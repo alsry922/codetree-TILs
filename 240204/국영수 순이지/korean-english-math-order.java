@@ -14,11 +14,11 @@ class Score implements Comparable<Score>{
     public int compareTo(Score score) {
         if (this.korean == score.korean) {
             if (this.english == score.english) {
-                return this.math - score.math;
+                return  score.math - this.math;
             }
-            return this.english - score.english;
+            return  score.english - this.english;
         }
-        return this.korean - score.korean;
+        return   score.korean - this.korean;
     }
     public void print() {
         System.out.println(String.format("%s %d %d %d", this.name, this.korean, this.english, this.math));
