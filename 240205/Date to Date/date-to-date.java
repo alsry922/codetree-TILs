@@ -12,6 +12,8 @@ public class Main {
         int[] numOfDays = new int[] {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
         while (true) {
+            if (m1 == m2 && d1 == d2) break;
+
             d1++;
             elapsedDays++;
 
@@ -19,10 +21,8 @@ public class Main {
                 d1 = 1;
                 m1++;
             }
-
-            if (m1 == m2 && d1 == d2) break;
         }
 
-        System.out.println(elapsedDays);
+        System.out.println(elapsedDays+1);
     }
 }
