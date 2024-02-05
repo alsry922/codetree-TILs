@@ -23,6 +23,6 @@ public class Main {
             if (m1 == m2 && d1 == d2) break;
         }
 
-        System.out.println(elapsedDays+1);
+        System.out.println(elapsedDays);
     }
 }
