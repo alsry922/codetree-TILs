@@ -3,43 +3,47 @@ import java.util.*;
 import java.util.concurrent.atomic.*;
 import java.util.stream.Collectors;
 
-class Number {
-    int num, val;
-    public Number(int num, int val) {
-        this.num = num;
-        this.val = val;
+class Number implements Comparable<Number> {
+    int number, index;
+    public Number(int number, int index) {
+        this.number = number;
+        this.index = index;
+    }
+    @Override
+    public int compareTo(Number number) {
+        if (this.number != number.number) {
+            return this.number - number.number;
+        }
+        return this.index - number.index;
     }
 }
 
 public class Main {
     public static int inputLength;
-    public static List<Integer> numberList = new ArrayList<>();
-    public static int[] visitCounts = new int[10000001];
-    public static StringBuilder sb = new StringBuilder();
+    public static List<Number> numberList = new ArrayList<>();
+    public static List<Integer> answers;
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         inputLength = Integer.parseInt(br.readLine().trim());
-        Arrays.stream(br.readLine().trim().split(" ")).forEach(ele -> {
-            numberList.add(Integer.parseInt(ele));
-        });
-        List<Integer> indexList = numberList.stream().collect(Collectors.toCollection(ArrayList::new));
+        AtomicInteger index = new AtomicInteger();
+
+        Arrays.stream(br.readLine().trim().split(" "))
+            .forEach((ele) -> {
+                numberList.add(new Number(Integer.parseInt(ele), index.getAndIncrement()));
+            });
         
         Collections.sort(numberList);
-        
-        indexList.stream().forEach((ele) -> {
-            int count = 0;
-            for (int i = 0; i < numberList.size(); i++) {
-                if (ele == numberList.get(i)) {
-                    if (visitCounts[ele] == count) {
-                        visitCounts[ele]++;
-                        sb.append(i+1).append(" ");
-                        return;
-                    }
-                    count++;
-                }
-            }
-        });
-        System.out.println(sb);
+
+        AtomicInteger sortedIndex = new AtomicInteger();
+        answers = new ArrayList<>(Collections.nCopies(inputLength, 0));
+
+        numberList.stream()
+            .forEach((ele) -> {
+                answers.set(ele.index, sortedIndex.incrementAndGet());
+            });
+        for (Integer answer : answers) {
+            System.out.print(answer + " ");
+        }
         br.close();
     }
 }
