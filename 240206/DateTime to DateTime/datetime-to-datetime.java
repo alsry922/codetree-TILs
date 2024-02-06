@@ -43,12 +43,20 @@ public class Main {
         System.out.println(elapsedTime);
     }
 
-    public static int checkException(DateTime targetTime) {
-        if (targetTime.day < START_DAY &&
-            targetTime.hour < START_HOUR &&
-            targetTime.minute < START_MINUTE) {
+    public static int checkException(DateTime targetTime) {    
+        if (targetTime.day < START_DAY) {
             return -1;
         }
+        if (targetTime.day == START_DAY && targetTime.hour < START_HOUR) {
+            return -1;
+        }
+        if (targetTime.day == START_DAY &&
+            targetTime.hour == START_HOUR &&
+            targetTime.minute < START_MINUTE) {
+            
+            return -1;
+        }
+
         return 0;
     }
 
