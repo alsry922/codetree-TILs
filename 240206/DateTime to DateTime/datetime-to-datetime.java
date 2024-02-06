@@ -26,6 +26,8 @@ public class Main {
         elapsedTime = checkException(targetTime);
         
         while (!isEqual(targetTime)) {
+            if (elapsedTime - 1) break;
+            
             elapsedTime++;
             START_MINUTE++;
             if (START_MINUTE >= 60) {
