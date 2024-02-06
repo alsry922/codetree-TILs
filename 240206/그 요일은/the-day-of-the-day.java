@@ -19,7 +19,7 @@ public class Main {
         int[] input = Arrays.stream(br.readLine().trim().split(" ")).mapToInt(Integer::parseInt).toArray();
         from = new DateTime(input[0], input[1]);
         to = new DateTime(input[2], input[3]);
-        String targetDayOfWeek = "Sat";
+        String targetDayOfWeek = br.readLine();
         int fromSum = Arrays.stream(numOfDays).limit(from.month).sum() + from.day;
         int toSum = Arrays.stream(numOfDays).limit(to.month).sum() + to.day;
         int targetIndex = IntStream.range(0, daysOfWeek.length).filter(i -> daysOfWeek[i].equals(targetDayOfWeek)).findFirst().getAsInt();
