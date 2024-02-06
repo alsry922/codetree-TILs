@@ -12,8 +12,10 @@ public class Main {
         fromDay = input[1];
         toMonth = input[2];
         toDay = input[3];
-        int fromSum = Arrays.stream(numOfDays).limit(fromMonth+1).sum() + fromDay;
-        int toSum = Arrays.stream(numOfDays).limit(toMonth+1).sum() + toDay;
+        int fromSum = Arrays.stream(numOfDays).limit(fromMonth).sum() + fromDay;
+        System.out.println(fromSum);
+        int toSum = Arrays.stream(numOfDays).limit(toMonth).sum() + toDay;
+        System.out.println(toSum);
         int dateDiff = fromSum - toSum;
         if (dateDiff > 0) {
             System.out.println(dayOfWeek[dayOfWeek.length - (dateDiff % 7)]);
