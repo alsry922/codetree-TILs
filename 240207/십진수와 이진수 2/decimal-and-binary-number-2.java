@@ -26,5 +26,6 @@ public class Main {
         Collections.reverse(answer);
         answer.stream().forEach(sb::append);
         System.out.println(sb);
+        br.close();
     }
 }
