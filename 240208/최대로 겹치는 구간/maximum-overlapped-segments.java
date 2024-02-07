@@ -13,8 +13,8 @@ public class Main {
             int[] input = Arrays.stream(br.readLine().trim().split(" "))
                     .mapToInt(Integer::parseInt)
                     .toArray();
-            int start = input[0];
-            int end = input[1];
+            int start = input[0]+OFFSET;
+            int end = input[1]+OFFSET;
             for (int index = start; index < end; index++) {
                 overlap[index]++;
             }
