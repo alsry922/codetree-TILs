@@ -21,6 +21,8 @@ public class Main {
                 } else if (lastNum < arr[j]) {
                     count += 1;
                     lastNum = arr[j];
+                } else {
+                    break;
                 }
                 maxCount = Math.max(maxCount, count);
             }
