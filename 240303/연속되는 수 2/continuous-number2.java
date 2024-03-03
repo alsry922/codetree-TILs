@@ -3,22 +3,23 @@ import java.util.*;
 
 public class Main {
     public static int N;
-    public static List<Integer> list = new ArrayList<>();
+    public static int[] arr;
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         N = sc.nextInt();
+        arr = new int[N];
         for (int i = 0; i < N; i++) {
-            list.add(sc.nextInt());
+            arr[i] = sc.nextInt();
         }
 
         int maxCount = 0, count = 0;
         for (int i = 0; i < N; i++) {
-            if (i == 0 || list.get(i) == list.get(i-1)) {
+            if (i == 0 || arr[i] == arr[i-1]) {
                 count++;
             } else {
                 count = 1;
             }
-                maxCount = Math.max(maxCount, count);
+            maxCount = Math.max(maxCount, count);
 
         }
 
