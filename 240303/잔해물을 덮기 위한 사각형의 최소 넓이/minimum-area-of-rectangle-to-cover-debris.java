@@ -4,47 +4,53 @@ import java.util.stream.*;
 
 public class Main {
     public static final int OFFSET = 1000;
+    public static final int N = 2;
+    public static final int MAX_R = 2000;
     public static int[][] grid = new int[OFFSET * 2 + 1][OFFSET * 2 + 1];
-    public static int[][] xPos = new int[2][2];
-    public static int[][] yPos = new int[2][2];
+    public static int[] x1 = new int[N];
+    public static int[] y1 = new int[N];
+    public static int[] x2 = new int[N];
+    public static int[] y2 = new int[N];
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         for (int i = 0; i < 2; i++) {
             int[] input = Arrays.stream(br.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
-            xPos[i][0] = input[0] + OFFSET;
-            yPos[i][0] = input[1] + OFFSET;
-            xPos[i][1] = input[2] + OFFSET;
-            yPos[i][1] = input[3] + OFFSET;
+            x1[i] = input[0] + OFFSET;
+            y1[i] = input[1] + OFFSET;
+            x2[i] = input[2] + OFFSET;
+            y2[i] = input[3] + OFFSET;
         }
 
         for (int i = 0; i < 2; i++) {
             int count = 0;
-            for (int row = xPos[i][0]; row < xPos[i][1]; row++) {
-                for (int col = yPos[i][0]; col < yPos[i][1]; col++) {
-                    grid[row][col]++;
+            for (int row = x1[i]; row < x2[i]; row++) {
+                for (int col = y1[i]; col < y2[i]; col++) {
+                    grid[row][col] = i + 1;
                     count++;
                 }
             }
         }
-        int rowMax = 0;
-        int colMax = 0;
 
-        for (int row = xPos[0][0]; row <= xPos[0][1]; row++) {
-            int count = 0;
-            for (int col = yPos[0][0]; col <= yPos[0][1]; col++) {
-                if (grid[row][col] == 1) count++;
+        int minX = MAX_R, maxX = 0, minY = MAX_R, maxY = 0;
+        boolean firstRectExists = false;
+        for (int x = 0; x <= MAX_R; x++) {
+            for (int y = 0; y <= MAX_R; y++) {
+                if (grid[x][y] == 1) {
+                    firstRectExists = true;
+                    minX = Math.min(x, minX);
+                    maxX = Math.max(x, maxX);
+                    minY = Math.min(y, minY);
+                    maxY = Math.max(y, maxY);
+                }
             }
-            if (count > rowMax) rowMax = count;
         }
 
-        for (int col = yPos[0][0]; col <= yPos[0][1]; col++) {
-            int count = 0;
-            for (int row = xPos[0][0]; row <= xPos[0][1]; row++) {
-                if (grid[row][col] == 1) count++;
-            }
-            if (count > colMax) colMax = count;
+        int area;
+        if (!firstRectExists) {
+            area = 0;
+        } else {
+            area = (maxX - minX + 1) * (maxY - minY + 1);
         }
-
-        System.out.println(rowMax * colMax);
+        System.out.println(area);
     }
 }
