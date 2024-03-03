@@ -11,13 +11,15 @@ public class Main {
             list.add(sc.nextInt());
         }
 
-        int groupCount = 0;
+        int maxCount = 0, count = 1;
         for (int i = 0; i < N; i++) {
-            if (i == 0 || list.get(i) != list.get(i-1)) {
-                groupCount++;
+            if (i == 0 || list.get(i) == list.get(i-1)) {
+                maxCount = Math.max(maxCount, ++count);
+            } else {
+                count = 1;
             }
         }
 
-        System.out.println(groupCount);
+        System.out.println(maxCount);
     }
 }
