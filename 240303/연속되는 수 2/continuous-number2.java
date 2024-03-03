@@ -12,7 +12,7 @@ public class Main {
             arr[i] = sc.nextInt();
         }
 
-        int maxCount = 0, count = 0;
+        int maxCount = 0, count = 1;
         for (int i = 0; i < N; i++) {
             if (i == 0 || arr[i] == arr[i-1]) {
                 // count++;
