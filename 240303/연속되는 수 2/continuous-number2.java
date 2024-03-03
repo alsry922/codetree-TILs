@@ -14,7 +14,7 @@ public class Main {
         int maxCount = 0, count = 1;
         for (int i = 0; i < N; i++) {
             if (i == 0 || list.get(i) == list.get(i-1)) {
-                maxCount = Math.max(maxCount, ++count);
+                maxCount = Math.max(maxCount, count++);
             } else {
                 count = 1;
             }
