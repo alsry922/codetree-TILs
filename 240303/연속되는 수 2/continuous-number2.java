@@ -15,8 +15,8 @@ public class Main {
         int maxCount = 0, count = 0;
         for (int i = 0; i < N; i++) {
             if (i == 0 || arr[i] == arr[i-1]) {
-                count++;
-                maxCount = Math.max(maxCount, count);
+                // count++;
+                maxCount = Math.max(maxCount, count++);
             } else {
                 count = 1;
             }
