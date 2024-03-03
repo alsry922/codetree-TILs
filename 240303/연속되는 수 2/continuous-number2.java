@@ -11,10 +11,11 @@ public class Main {
             list.add(sc.nextInt());
         }
 
-        int maxCount = 0, count = 1;
+        int maxCount = 0, count = 0;
         for (int i = 0; i < N; i++) {
             if (i == 0 || list.get(i) == list.get(i-1)) {
-                maxCount = Math.max(maxCount, count++);
+                count++;
+                maxCount = Math.max(maxCount, count);
             } else {
                 count = 1;
             }
