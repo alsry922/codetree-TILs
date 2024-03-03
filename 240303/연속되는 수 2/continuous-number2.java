@@ -16,11 +16,10 @@ public class Main {
         for (int i = 0; i < N; i++) {
             if (i == 0 || arr[i] == arr[i-1]) {
                 count++;
+                maxCount = Math.max(maxCount, count);
             } else {
                 count = 1;
             }
-            maxCount = Math.max(maxCount, count);
-
         }
 
         System.out.println(maxCount);
