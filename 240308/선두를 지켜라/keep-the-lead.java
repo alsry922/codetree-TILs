@@ -4,7 +4,7 @@ import java.util.*;
 public class Main {
     public static int N, M;
     public static int[] A = new int[1000001];
-    public static int[] B = new int[1000001]; 
+    public static int[] B = new int[1000001];
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         N = sc.nextInt();
@@ -32,19 +32,19 @@ public class Main {
 
         int count = 0;
         String first = "";
-        for (int i = 0; i < A.length; i++) {
+        for (int i = 1; i < A.length; i++) {
             if (A[i] > B[i]) {
                 if (!first.equals("A")) {
                     first = "A";
                     count++;
                 }
-            } else {
+            } else if (B[i] > A[i]){
                 if (!first.equals("B")) {
                     first = "B";
                     count++;
                 }
             }
         }
-        System.out.println(count - 1);
+        System.out.println(count-1);
     }
 }
