@@ -34,15 +34,15 @@ public class Main {
         String first = "";
         for (int i = 1; i < A.length; i++) {
             if (A[i] > B[i]) {
-                if (!first.equals("A")) {
-                    first = "A";
+                if (first.equals("B")) {
                     count++;
                 }
+                first = "A";
             } else if (B[i] > A[i]){
-                if (!first.equals("B")) {
-                    first = "B";
+                if (first.equals("A")) {
                     count++;
                 }
+                first = "B";
             }
         }
         System.out.println(count-1 < 0 ? 0 : count-1);
