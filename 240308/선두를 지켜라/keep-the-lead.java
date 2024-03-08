@@ -45,6 +45,6 @@ public class Main {
                 }
             }
         }
-        System.out.println(count-1 < 0 ? -1 : count-1);
+        System.out.println(count-1 < 0 ? 0 : count-1);
     }
 }
