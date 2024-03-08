@@ -37,8 +37,13 @@ public class Main {
         
         for (int i = 1; i < 1000001; i++) {
             if (A[i] == B[i]) {
-                System.out.println(i);
-                break;
+                if (A[i] != 0 && B[i] != 0) {
+                    System.out.println(i);
+                    break;
+                } else {
+                    System.out.println(-1);
+                    break;
+                }
             }
         }
     }
