@@ -12,10 +12,10 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         N = sc.nextInt();
         K = sc.nextInt();
-        T = sc.nextInt();
         P = sc.nextInt();
-        developers = new int[N];
-        infectCounts = new int[N];
+        T = sc.nextInt();
+        developers = new int[N + 1];
+        infectCounts = new int[N + 1];
         developers[P] = 1;
 
         for (int i = 0; i < T; i++) {
@@ -24,22 +24,37 @@ public class Main {
             y[t] = sc.nextInt();
         }
 
-        for (int i = 0; i < x.length; i++) {
+        for (int i = 1; i < x.length; i++) {
+            int x1 = x[i];
+            int y1 = y[i];
             // 둘 중 한 명은 감염되어 있어야 한다.
-            if (developers[x[i]] == 0 && developers[y[i]] == 0)
+            if (developers[x1] == 0 && developers[y1] == 0)
                 continue;
             // 둘 다 전염 가능 횟수를 넘길 수 없다.
-            if (infectCounts[x[i]] >= 2 && infectCounts[y[i]] >= 2)
+            if (infectCounts[x1] >= 2 && infectCounts[y1] >= 2)
                 continue;
-            // 둘 중 한 명이 감염된 상태이고, 전염 가능하므로
-            developers[x[i]] = 1;
-            developers[y[i]] = 1;
-            infectCounts[x[i]]++;
-            infectCounts[y[i]]++;
+
+            // 둘 다 감염된 상태인 경우
+            if (developers[x1] == 1 && developers[y1] == 1) {
+                if (infectCounts[x1] < 2) {
+                    infectCounts[x1]++;
+                } else if (infectCounts[y1] < 2) {
+                    infectCounts[y1]++;
+                }
+            }
+
+            // 둘 중 한 명이 감염된 상태인 경우
+            if (developers[x1] == 1 && infectCounts[x1] < 2) {
+                infectCounts[x1]++;
+                developers[y1] = 1;
+            } else if (developers[y1] == 1 && infectCounts[y1] < 2) {
+                infectCounts[y1]++;
+                developers[x1] = 1;
+            }
         }
 
         StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < developers.length; i++) {
+        for (int i = 1; i < developers.length; i++) {
             sb.append(developers[i]);
         }
         System.out.println(sb);
