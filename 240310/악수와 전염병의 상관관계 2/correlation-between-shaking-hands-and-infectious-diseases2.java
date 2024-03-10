@@ -31,23 +31,23 @@ public class Main {
             if (developers[x1] == 0 && developers[y1] == 0)
                 continue;
             // 둘 다 전염 가능 횟수를 넘길 수 없다.
-            if (infectCounts[x1] >= 2 && infectCounts[y1] >= 2)
+            if (infectCounts[x1] >= T && infectCounts[y1] >= T)
                 continue;
 
             // 둘 다 감염된 상태인 경우
             if (developers[x1] == 1 && developers[y1] == 1) {
-                if (infectCounts[x1] < 2) {
+                if (infectCounts[x1] < K) {
                     infectCounts[x1]++;
-                } else if (infectCounts[y1] < 2) {
+                } else if (infectCounts[y1] < K) {
                     infectCounts[y1]++;
                 }
             }
 
             // 둘 중 한 명이 감염된 상태인 경우
-            if (developers[x1] == 1 && infectCounts[x1] < 2) {
+            if (developers[x1] == 1 && infectCounts[x1] < K) {
                 infectCounts[x1]++;
                 developers[y1] = 1;
-            } else if (developers[y1] == 1 && infectCounts[y1] < 2) {
+            } else if (developers[y1] == 1 && infectCounts[y1] < K) {
                 infectCounts[y1]++;
                 developers[x1] = 1;
             }
