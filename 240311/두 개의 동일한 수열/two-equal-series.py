@@ -2,9 +2,10 @@ n = int(input())
 A = list(map(int, input().split()))
 B = list(map(int, input().split()))
 
-answer = 'No'
+
+answer = 'Yes'
 for ele in A:
-    if ele in B:
-        answer = 'Yes'
+    if ele not in B:
+        answer = 'No'
 
 print(answer)
