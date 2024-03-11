@@ -3,9 +3,13 @@ A = list(map(int, input().split()))
 B = list(map(int, input().split()))
 
 
-answer = 'Yes'
-for ele in A:
-    if ele not in B:
-        answer = 'No'
+def equal():
+    for ele1, ele2 in zip(A, B):
+        if (ele1 != ele2):
+            return 'No'
+    return 'Yes'
 
-print(answer)
+A.sort()
+B.sort()
+
+print(equal())
