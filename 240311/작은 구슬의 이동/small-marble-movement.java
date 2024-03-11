@@ -17,17 +17,17 @@ public class Main {
             int nextRow = r + dirRow[d];
             int nextCol = c + dirCol[d];
             if (!isInRange(nextRow, nextCol)) {
-                d = DIR_NUM - 3;
+                d = DIR_NUM - d;
             } else {
                 r = nextRow;
                 c = nextCol;
             }
         }
-        System.out.println(String.format("%d %d", r, c));
+        System.out.printf("%d %d%n", r, c);
     }
 
     public static int getDirection(String dir) {
-        if (dir.equals("R")) 
+        if (dir.equals("R"))
             return 0;
         else if (dir.equals("D"))
             return 1;
