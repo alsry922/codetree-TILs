@@ -27,11 +27,11 @@ public class Main {
     }
 
     public static int getDirection(String dir) {
-        if (dir.equals("D")) 
+        if (dir.equals("R")) 
             return 0;
-        else if (dir.equals("S"))
+        else if (dir.equals("D"))
             return 1;
-        else if (dir.equals("N"))
+        else if (dir.equals("U"))
             return 2;
         else
             return 3;
