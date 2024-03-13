@@ -24,15 +24,16 @@ public class Main {
                     count++;
                 }
             }
-            if (count >= 3) {
+            if (count == 3) {
                 System.out.println(1);
             } else {
                 System.out.println(0);
             }
         }
+
     }
 
     public static boolean isInRange(int r, int c) {
-        return 1 <= r && r <= N && 1 <= c && c <= N; 
+        return 1 <= r && r <= N && 1 <= c && c <= N;
     }
 }
