@@ -16,7 +16,7 @@ public class Main {
                 words.add(word);
             }
         }
-        words.sort(null);
+        Collections.sort(words);
         System.out.println(words.get(k-1));
     }
 }
