@@ -9,7 +9,8 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         n = sc.nextInt();
         k = sc.nextInt();
-        T = sc.next();   
+        T = sc.next();
+        sc.nextLine();
         while (n-- > 0) {
             String word = sc.nextLine();
             if (word.startsWith(T)) {
