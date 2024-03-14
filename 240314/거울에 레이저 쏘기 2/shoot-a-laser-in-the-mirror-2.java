@@ -15,9 +15,7 @@ public class Main {
         grid = new String[N][N];
         for (int row = 0; row < N; row++) {
             String[] mirror = sc.next().split("");
-            grid[row][0] = mirror[0];
-            grid[row][1] = mirror[1];
-            grid[row][2] = mirror[2];
+            if (N >= 0) System.arraycopy(mirror, 0, grid[row], 0, N);
         }
         K = sc.nextInt();
 
