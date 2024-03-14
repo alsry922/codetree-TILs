@@ -1,74 +1,81 @@
-import java.io.*;
-import java.util.*;
+import java.util.Scanner;
 
 public class Main {
-    public static int N, K;
-    public static String[][] grid;
-    public static int[] dx = new int[] {1,  0, -1, 0};
-    public static int[] dy = new int[] { 0, -1, 0, 1};
-    public static int[] startX = new int[] {0, 0, 2, 2};
-    public static int[] startY = new int[] {0, 2, 0, 2};
-    public static int xPos, yPos;
+    public static final int DIR_NUM = 4;
+    public static final int MAX_N = 1000;
+    
+    public static int n;
+    public static char[][] arr = new char[MAX_N][MAX_N];
+    
+    public static int startNum;
+    public static int x, y, moveDir;
+    
+    // 주어진 숫자에 따라
+    // 시작 위치와 방향을 구합니다.
+    public static void initialize(int num) {
+        if(num <= n) {
+            x = 0; y = num - 1; moveDir = 0;
+        }
+        else if(num <= 2 * n) {
+            x = num - n - 1; y = n - 1; moveDir = 1;
+        }
+        else if(num <= 3 * n) {
+            x = n - 1; y = n - (num - 2 * n); moveDir = 2;
+        }
+        else {
+            x = n - (num - 3 * n); y = 0; moveDir = 3;
+        }
+    }
+    
+    public static boolean inRange(int x, int y) {
+        return 0 <= x && x < n && 0 <= y && y < n;
+    }
+    
+    // (x, y)에서 시작하여 nextDir 방향으로
+    // 이동한 이후의 위치를 구합니다.
+    public static void move(int nextDir) {
+        int[] dx = new int[]{1,  0, -1, 0};
+        int[] dy = new int[]{0, -1,  0, 1};
+        
+        x += dx[nextDir];
+        y += dy[nextDir];
+        moveDir = nextDir;
+    }
+    
+    public static int simulate() {
+        int moveNum = 0;
+        while(inRange(x, y)) {
+            // 0 <-> 1 / 2 <-> 3
+            if(arr[x][y] == '/')
+                move(moveDir ^ 1);
+            // 0 <-> 3 / 1 <-> 2
+            else
+                move(3 - moveDir);
+            
+            moveNum += 1;
+        }
+        
+        return moveNum;
+    }
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        N = sc.nextInt();
-        grid = new String[N][N];
-        for (int row = 0; row < N; row++) {
-            String[] mirror = sc.next().split("");
-            if (N >= 0) System.arraycopy(mirror, 0, grid[row], 0, N);
+        // 입력
+        n = sc.nextInt();
+        for(int i = 0; i < n; i++) {
+            String input = sc.next();
+            for(int j = 0; j < n; j++)
+                arr[i][j] = input.charAt(j);
         }
-        K = sc.nextInt();
-
-        int dirNum = (K-1) / N;
-        getStartPos(dirNum);
-
-        int count = 0;
-        while (isInRange(xPos, yPos)) {
-            if (grid[xPos][yPos].equals("\\")) {
-                if (dirNum == 0 || dirNum == 2) {
-                    dirNum = (dirNum + 3) % 4;
-
-                } else {
-                    dirNum = (dirNum + 1) % 4;
-                }
-            } else {
-                if (dirNum == 0 || dirNum == 2) {
-                    dirNum = (dirNum + 1) % 4;
-                } else {
-                    dirNum = (dirNum + 3) % 4;
-                }
-            }
-            xPos = xPos + dx[dirNum];
-            yPos = yPos + dy[dirNum];
-            count++;
-        }
-
-        System.out.println(count);
-    }
-
-    public static int getDirNum(int num) {
-        return num / N;
-    }
-
-    public static void getStartPos(int dirNum) {
-        xPos = startX[dirNum];
-        yPos = startY[dirNum];
-        if (dirNum % 2 == 0) {
-            if (dirNum / 2 == 0 ) {
-                yPos += (K-1) % N;
-            } else {
-                yPos -= (K-1) % N;
-            }
-        } else {
-            if (dirNum / 2 == 0) {
-                xPos += (K-1) % N;
-            } else {
-                yPos -= (K-1) % N;
-            }
-        }
-    }
-
-    public static boolean isInRange(int x, int y) {
-        return 0 <= x && x < N && 0 <= y && y < N;
+        
+        startNum = sc.nextInt();
+ 
+        // 시작 위치와 방향을 구합니다.
+        initialize(startNum);
+        // (x, y)에서 moveDir 방향으로 시작하여
+        // 시뮬레이션을 진행합니다.
+        int moveNum = simulate();
+        
+        System.out.print(moveNum);
     }
 }
