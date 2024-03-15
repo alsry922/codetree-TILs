@@ -4,21 +4,21 @@ import java.util.*;
 public class Main {
     public static int N;
     public static int[][] grid;
-    public static int[] dx = new int[] {0, -1,  0, 1};
-    public static int[] dy = new int[] {1,  0, -1, 0};
+    public static int[] dx = new int[] { 0, 1, 0, -1};
+    public static int[] dy = new int[] {-1, 0, 1,  0};
     public static int DIR_NUM = 0;
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         N = sc.nextInt();
         grid = new int[N][N];
-        grid[N/2][N/2] = 1;
-        int cr = N/2, cc = N/2;
-        for (int i = 2; i <= N * N; i++) {
+        grid[N-1][N-1] = N*N;
+        int cr = N-1, cc = N-1;
+        for (int i = N*N-1; i >= 1; i--) {
             while (true) {
                 int nr = cr + dx[DIR_NUM];
                 int nc = cc + dy[DIR_NUM];
                 if (canWrite(nr, nc)) {
-                    grid[nr][nc] = grid[cr][cc] + 1;
+                    grid[nr][nc] = i;
                     cr = nr;
                     cc = nc;
                     break;
