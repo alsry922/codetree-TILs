@@ -1,46 +1,65 @@
-import java.io.*;
-import java.util.*;
+import java.util.Scanner;
 
 public class Main {
-    public static int N, T;
-    public static int[][] grid;
-    public static int[] dx = new int[] {0, 1, 0, -1};
-    public static int[] dy = new int[] {1, 0, -1, 0};
-    public static int DIR_NUM = 3;
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        N = sc.nextInt();
-        T = sc.nextInt();
-        grid = new int[N][N];
-        String[] commands = sc.next().split("");
-        for (int row = 0; row < N; row++) {
-            for (int col = 0; col < N; col++) {
-                grid[row][col] = sc.nextInt();
-            }
-        }
-
-        int curRow = N / 2, curCol = N / 2;
-        int answer = grid[curRow][curCol] ;
-        for (String command : commands) {
-            if (command.equals("F")) {
-                int nr = curRow + dx[DIR_NUM];
-                int nc = curCol + dy[DIR_NUM];
-                if (canMove(nr, nc)) {
-                    curRow = nr;
-                    curCol = nc;
-                    answer += grid[curRow][curCol];
+    public static final int MAX_N = 100;
+    public static final int DIR_NUM = 4;
+    
+    public static int n, t;
+    public static int x, y, dir;
+    public static int ans;
+    public static String str;
+    public static int[][] board = new int[MAX_N][MAX_N];
+    
+    public static int[] dx = new int[]{-1, 0, 1,  0};
+    public static int[] dy = new int[]{ 0, 1, 0, -1};
+    
+    public static boolean inRange(int x, int y) {
+        return 0 <= x && x < n && 0 <= y && y < n;
+    }
+    
+    public static void simulate() {
+        for(int i = 0; i < t; i++) {
+            // R 명령이 나올 경우 방향을 오른쪽으로 바꿔줍니다.
+            if(str.charAt(i) == 'R')
+                dir = (dir + 1) % 4;
+            // L 명령이 나올 경우 방향을 왼쪽으로 바꿔줍니다.
+            else if(str.charAt(i) == 'L')
+                dir = (dir + 3) % 4;
+            // 해당 방향으로 움직입니다.
+            else {
+                int nx = x + dx[dir];
+                int ny = y + dy[dir];
+                // 이동할 수 있는 칸이면 이동합니다.
+                // 해당 칸 안에 있는 숫자를 정답에 더해줍니다.
+                if(inRange(nx, ny)) {
+                    ans += board[nx][ny];
+                    x = nx;
+                    y = ny;
                 }
-            } else if (command.equals("R")) {
-                DIR_NUM = (DIR_NUM + 1) % 4;
-            } else {
-                DIR_NUM = (DIR_NUM + 3) % 4;
             }
         }
-
-        System.out.println(answer);
     }
 
-    public static boolean canMove(int r, int c) {
-        return 0 <= r && r < N && 0 <= c && c < N;
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        // 입력
+        n = sc.nextInt();
+        t = sc.nextInt();
+        str = sc.next();
+        for(int i = 0; i < n; i++)
+            for(int j = 0; j < n; j++)
+                board[i][j] = sc.nextInt();
+        
+        // 초기 시작 위치를 설정합니다.
+        x = n / 2;
+        y = n / 2;
+        dir = 0;
+
+        ans += board[x][y];
+        
+        simulate();
+        
+        // 정답을 출력합니다.
+        System.out.print(ans);
     }
 }
