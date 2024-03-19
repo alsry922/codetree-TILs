@@ -14,8 +14,8 @@ public class Main {
             int sum = 0;
             for (int j = i+2; j < arr.length; j++) {
                 sum = arr[i]+arr[j];
+                answer = Math.max(answer, sum);
             }
-            answer = Math.max(answer, sum);
         }
 
         System.out.println(answer);
