@@ -50,7 +50,6 @@ public class Main {
             }
             return;
         }
-        System.out.printf("%d %d %d\n", row, col, count);
         simulate(row + dx[dirNum], col + dy[dirNum], count+1, dirNum);
     }
 
