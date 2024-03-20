@@ -17,16 +17,16 @@ public class Main {
         int answer = 0, sum = 0;
         for (int i = 0; i < N; i++) {
             for (int j = 0; j < N-2; j++) {
-                for (int k = i; k < N; k++) {
+                 for (int k = i; k < N; k++) {
                     for (int l = 0; l < N-2; l++) {
                         if (i == k && l <= j+2) {
                             continue;
                         }
-                        sum = 
-                            grid[i][j] + grid[i][j+1] + grid[i][j+2]
-                            + grid[k][l] + grid[k][l+1] + grid[k][l+2];
+                        sum =
+                                grid[i][j] + grid[i][j+1] + grid[i][j+2]
+                                        + grid[k][l] + grid[k][l+1] + grid[k][l+2];
+                        answer = Math.max(answer, sum);
                     }
-                    answer = Math.max(answer, sum);
                 }
             }
         }
