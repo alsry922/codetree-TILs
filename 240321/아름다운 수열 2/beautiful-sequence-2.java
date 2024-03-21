@@ -27,7 +27,7 @@ public class Main {
                     }
                 }
             }
-            if (count == 3) 
+            if (count == M) 
                 answer++;
         }
         System.out.println(answer);
