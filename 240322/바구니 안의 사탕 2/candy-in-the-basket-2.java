@@ -11,14 +11,12 @@ public class Main {
         for (int i = 0; i < N; i++) {
             int count = sc.nextInt();
             int index = sc.nextInt();
-            candy[index] = count;
+            candy[index] += count;
         }
         int max = 0;
-        for (int i = 0; i <= 101; i++) {
+        for (int i = K; i < 101-K; i++) {
             int sum = 0;
             for (int j = i-K; j <= i+K; j++) {
-                if (j < 0 || j > 100)
-                    break;
                 sum += candy[j];
             }
             max = Math.max(max, sum);
