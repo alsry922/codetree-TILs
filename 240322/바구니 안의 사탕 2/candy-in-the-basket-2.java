@@ -19,8 +19,7 @@ public class Main {
             boolean flag = true;
             for (int j = i-K; j <= i+K; j++) {
                 if (j < 0 || j > 100) {
-                    flag = false;
-                    break;
+                    continue;
                 }
                 sum += candy[j];
             }
