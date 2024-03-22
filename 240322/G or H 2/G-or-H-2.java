@@ -17,21 +17,35 @@ public class Main {
                 pictures[index] = 2;
             }
         }
-        int maxSize = 0;
+        int maxNumber = 0;
         for (int i = 0; i < LENGTH; i++) {
-            for (int j = i; j < LENGTH; j++) {
+            if (pictures[i] == 0) continue;
+            maxNumber = Math.max(maxNumber, i);
+        }
+        int maxSize = 0;
+        for (int i = 0; i <= maxNumber; i++) {
+            for (int j = i+1; j <= maxNumber; j++) {
                 int gCnt = 0;
                 int hCnt = 0;
+                if (pictures[i] == 0 || pictures[j] == 0) {
+                    continue;
+                }
                 for (int k = i; k <= j; k++) {
                     if (pictures[k] == 1) {
                         gCnt++;
-                    } else if (pictures[k] == 2) {
+                    }
+                    if (pictures[k] == 2) {
                         hCnt++;
                     }
                 }
-                if ((gCnt == 0 && hCnt != 0)
-                        || (gCnt != 0 && hCnt == 0)
-                        || gCnt == hCnt && (gCnt != 0 && hCnt != 0)) {
+                if (gCnt == 0 && hCnt == 0) {
+                    continue;
+                }
+                if (gCnt > 1 && hCnt == 0) {
+                    maxSize = Math.max(maxSize, j - i);
+                } else if (gCnt == 0 && hCnt > 1) {
+                    maxSize = Math.max(maxSize, j - i);
+                } else if (gCnt == hCnt) {
                     maxSize = Math.max(maxSize, j - i);
                 }
             }
