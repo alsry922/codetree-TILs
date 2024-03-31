@@ -21,8 +21,10 @@ def get_diff(i, j, k):
     return ret
 
 for i in range(len(developers)):
-    for j in range(i+1, len(developers)):
-        for k in range(j+1, len(developers)):
+    for j in range(len(developers)):
+        for k in range(len(developers)):
+            if (i == j or i == k or j == k):
+                continue
             min_diff = min(min_diff, get_diff(i, j, k))
 
 if (min_diff == sys.maxsize):
