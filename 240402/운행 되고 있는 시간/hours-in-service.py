@@ -13,6 +13,6 @@ for i in range(N):
             continue
         start, end = TIMES[j]
         timeSum += end - start
-    ans = min(ans, timeSum)
+    ans = max(ans, timeSum)
 
 print(ans)
