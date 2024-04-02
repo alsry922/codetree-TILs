@@ -5,7 +5,7 @@ TIMES = [
         for _ in range(N)
 ]
 
-ans = sys.maxsize
+ans = 1
 for i in range(N):
     timeSum = 0;
     for j in range(N):
