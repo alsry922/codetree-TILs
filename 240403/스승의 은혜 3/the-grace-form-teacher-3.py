@@ -12,9 +12,7 @@ for i in range(len(presents)):
     discounted_presents.sort(key=lambda present: (present[0], present[1]))
     sum_cost = 0
     count = 0
-    print(discounted_presents)
     for j in range(len(discounted_presents)):
-        print(sum_cost + discounted_presents[j][0] + discounted_presents[j][1], B)
         if (sum_cost + discounted_presents[j][0] + discounted_presents[j][1] > B):
             break
         sum_cost += (discounted_presents[j][0] + discounted_presents[j][1])
