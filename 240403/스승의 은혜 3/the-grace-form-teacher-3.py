@@ -13,9 +13,9 @@ for i in range(len(presents)):
     sum_cost = 0
     count = 0
     for j in range(len(discounted_presents)):
-        if (sum_cost + discounted_presents[j][0] > B):
+        if (sum_cost + discounted_presents[j][0] + discounted_presents[j][1] > B):
             break
-        sum_cost += discounted_presents[j][0]
+        sum_cost += (discounted_presents[j][0] + discounted_presents[j][1])
         count += 1
     max_count = max(max_count, count)
 
