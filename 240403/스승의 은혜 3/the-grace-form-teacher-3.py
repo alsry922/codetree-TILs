@@ -9,7 +9,7 @@ for i in range(len(presents)):
     discounted_presents = [
         (present[0] // 2, present[1]) if index == i else present for index, present in enumerate(presents)
     ]
-    discounted_presents.sort(key=lambda present: (present[0], present[1]))
+    discounted_presents.sort(key=lambda present: present[0] + present[1])
     sum_cost = 0
     count = 0
     for j in range(len(discounted_presents)):
