@@ -12,7 +12,7 @@ for ocean_height in range(1, 1001):
     count = 0
     for index, height in enumerate(sink_glacier_heights):
         if index == 0 and height > 0:
-            count = 1
+            count += 1
         
         if height > 0 and sink_glacier_heights[index-1] <= 0:
             count += 1
